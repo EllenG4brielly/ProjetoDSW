@@ -1,4 +1,4 @@
-package br.com.senc.sp.stads4ma.dsw.blog;
+package br.com.senac.sp.stads4ma.dsw.blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
