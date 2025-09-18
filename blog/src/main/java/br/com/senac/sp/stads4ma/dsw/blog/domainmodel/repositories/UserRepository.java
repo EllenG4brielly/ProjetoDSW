@@ -1,11 +1,12 @@
 package br.com.senac.sp.stads4ma.dsw.blog.domainmodel.repositories;
 
-import com.github.javafaker.Faker; //biblioteca para criar dados falsos
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+
+import com.github.javafaker.Faker; //biblioteca para criar dados falsos
+import org.springframework.stereotype.Component;
 
 @Component
 public class UserRepository { //simulação de BD
@@ -29,5 +30,28 @@ public class UserRepository { //simulação de BD
 public List<User> findAll() {
     return this.internalDataset.stream().toList();
 }
+
+    public User findById(UUID id) {
+        if( this.internalDataset.contains(this.forgeUser(id))){
+            return this.internalDataset.get(
+                    this.internalDataset.indexOf(
+                            this.forgeUser(id)
+                    )
+            );
+        }
+        return null;
+    }
+
+    public boolean removeById(UUID id) {
+        User user = this.findById(id);
+        if(user != null)
+            return this.internalDataset.remove(user);
+        return false;
+    }
+
+    private static User forgeUser(UUID id) {
+        return new User(id);
+    }
 }
+
 

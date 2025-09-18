@@ -1,5 +1,6 @@
 package br.com.senac.sp.stads4ma.dsw.blog.domainmodel.repositories;
 
+
 import lombok.*;
 
 import java.util.Objects;
@@ -42,5 +43,9 @@ public class User { //tabela de usuario
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public User(UUID id) {
+        this.id = id;
     }
 }
