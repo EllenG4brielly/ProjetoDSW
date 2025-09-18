@@ -4,6 +4,7 @@ import br.com.senac.sp.stads4ma.dsw.blog.domainmodel.repositories.User;
 import br.com.senac.sp.stads4ma.dsw.blog.service.UserService;
 import br.com.senac.sp.stads4ma.dsw.blog.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,12 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        User resultUser = this.userService.create(user);
+        if(resultUser != null)
+            return  new ResponseEntity<>(resultUser, HttpStatus.CREATED);
+        return ResponseEntity.notFound().build();
+    }
 
 }
